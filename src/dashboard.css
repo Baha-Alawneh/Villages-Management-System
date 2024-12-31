@@ -1,0 +1,87 @@
+:root {
+    --main-color: #1f2937;
+    --secondary-color: #1a202c;
+    --focus-color: #2d3748;
+    --text-color:#e5e8ec;
+}
+
+/* Start sidebar styling */
+
+.dashboard {
+    grid-area: dashboard;
+    background-color: var(--main-color);
+    position:fixed; 
+    width: 17%;
+    top: 0;
+    height: 100%; 
+    overflow: auto; 
+}
+
+.dashboard   a {
+    display: block;
+    transition: 0.5s;
+    margin-bottom: 5px;
+    text-decoration: none;
+
+}
+
+.dashboard a:hover,
+.dashboard  a.active {
+background-color: var(--focus-color);
+}
+
+.dashboard a span {
+font-size: 14px;
+margin-left: 10px;
+}
+
+@media (max-width: 767px) {
+    body{
+        grid-template-columns: 1fr 7fr;
+
+    }
+
+    .dashboard > h1 {
+        font-size: 0px;
+    }
+
+    .dashboard a i{
+        margin: 15%;
+        font-size: 22px;
+    }
+
+    .dashboard a span {
+        display: none;
+    }
+}
+
+
+
+h1 {
+    padding-left: 1vw;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.overview {
+    margin-top: 5vh;
+}
+
+.overview,
+.village-management,
+.chat,
+.gallery {
+    padding: 1vw;
+    color: white;
+    padding-left: 1vw;
+    background-color: var(--main-color);
+}
+
+.overview:hover,
+.village-management:hover,
+.chat:hover,
+.gallery:hover {
+    cursor: pointer;
+}
+
+/* End sidebar styling */

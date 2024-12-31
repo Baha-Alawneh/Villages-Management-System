@@ -1,0 +1,143 @@
+:root {
+    --main-color: #1f2937;
+    --secondary-color: #1a202c;
+    --focus-color: #2d3748;
+    --text-color:#e5e8ec;
+}
+
+
+.dashboard .overview {
+    background-color: var(--focus-color);
+  }
+
+.overview-container {
+    background-color: var(--secondary-color);
+    padding-left: 1em;
+    padding-right: 1em;
+    /* overflow-y: auto;  */
+    height: 150vh; 
+    grid-area: overview;
+}
+
+.header-container {
+    grid-area: overview;
+    display: grid;
+    grid-template-columns: 1fr ;
+    grid-template-rows: 0.22fr 1fr ;
+    grid-template-areas:
+        "title"
+        "map ";
+    grid-gap: 1em;
+}
+
+
+.map-container {
+    grid-area: map;
+    margin-top: -0.5vh;
+    height: 40vh;
+    border-color: #374151;
+    border-width: 3vh;
+    border-style: solid;
+    border-radius: 8px;
+}
+
+#map-con{
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    outline: 2px solid white;
+    outline-offset: 0cap;
+    border-radius: 4px;  
+
+}
+
+.title {
+    grid-area: title;
+    margin-left: 0.5vw;
+
+}
+
+/* Start Statistics container */
+.statistics-container{
+    display: grid;
+    margin-top: 3vh;
+    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    grid-gap: 15px;
+}
+
+
+.statistics-item {
+    background-color: var(--main-color);
+    border-radius: 8px;
+    padding-left: 2vw;
+    
+}
+.statistics-item h3{
+    margin-top: 3vw;
+    color: var(--text-color);
+    font-weight:501;
+    margin-bottom:0 ;
+
+
+}
+.statistics-item p{
+    color:var(--text-color);
+    font-family: "Roboto", sans-serif;
+    font-weight:100;
+    margin-top:0 ;
+}
+/* End Statistics container */
+
+/* Start Chart Container */
+.charts-container{
+    display:grid ;
+    grid-template-columns: repeat(auto-fit,minmax(200px, 1fr));
+    grid-gap: 1em;
+    margin-top: 1em;
+
+}
+.chart{
+    text-align: center; 
+    background-color: var(--main-color);
+    border-radius: 8px;
+
+}
+.chart p {
+    margin-bottom: 0;
+    color: #666666;
+    font-weight: 600;
+    font-size: smaller;
+}
+.chart h3{
+    color: var(--text-color);
+    font-size: 1.1em;
+}
+.chart .piechart {
+    width: 80%;
+    height: calc(50vh + 5%);
+    margin: 0 auto; 
+    display: block; 
+}
+@media screen and (max-width: 768px) {
+    .chart .piechart {
+        height: calc(35vh + 5%); 
+    }
+}
+
+.barchart-container{
+    text-align: center; 
+    background-color: #374151;
+    border-radius: 8px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+
+.barchart {
+    width: 100%;
+    height: 70vh;
+    margin: 0 auto;
+    display: block;
+}
+
+/* End Chart Container */

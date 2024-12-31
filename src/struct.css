@@ -1,0 +1,12 @@
+.structure {
+    display: grid;
+    grid-template-columns: 1fr 5fr; /* Left sidebar and right content */
+    grid-template-rows: auto; /* Automatically adjust row height based on content */
+    grid-template-areas:
+      "dashboard overview"
+      "dashboard village-management"
+      "dashboard gallery"
+      "dashboard chat";
+    height: 100%; /* Ensures full height of the viewport */
+    overflow: auto; /* Enables scrolling if needed */
+  }
