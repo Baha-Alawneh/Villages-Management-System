@@ -1,0 +1,20 @@
+.layout {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+}
+
+.sidebar {
+  width: 17%; /* Match the width of your dashboard */
+  background-color: var(--main-color); /* Use your existing styles */
+  position: fixed; /* Fixed sidebar on the left */
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.content {
+  margin-left: 17%; /* Offset the sidebar width */
+  flex: 1; /* Take the rest of the space */
+  background-color: #f8f9fa; /* Light background for the content */
+  overflow-y: auto; /* Enable scrolling for content */
+}

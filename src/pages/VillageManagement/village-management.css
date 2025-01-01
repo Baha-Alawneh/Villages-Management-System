@@ -23,9 +23,7 @@
 
     }
 }
-.dashboard .village-management {
-    background-color: var(--focus-color);
-  }
+
 .add-new-village {
     width: 12vw;
     color: #ffffff;
@@ -253,6 +251,7 @@
     align-items: center;
     z-index: 1000;
 }
+
 
 .popup-content {
     background: var(--second-color);

@@ -6,15 +6,13 @@
 }
 
 
-.dashboard .overview {
-    background-color: var(--focus-color);
-  }
+
 
 .overview-container {
     background-color: var(--secondary-color);
     padding-left: 1em;
     padding-right: 1em;
-    /* overflow-y: auto;  */
+    overflow-y: auto; 
     height: 150vh; 
     grid-area: overview;
 }
