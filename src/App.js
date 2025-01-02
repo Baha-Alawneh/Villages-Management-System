@@ -19,7 +19,6 @@ function App() {
   return (
     
       <Router>
-      <Dashboard />
         <Routes>
           <Route path="/" element={<Overview stats={stats} />} />
           <Route path="/village-management" element={<VillageManagement />} />

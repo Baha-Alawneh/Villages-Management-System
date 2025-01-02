@@ -26,7 +26,7 @@ function Header (){
         return () => {
             map.remove();
         };
-    },[]);
+    });
 
 
 

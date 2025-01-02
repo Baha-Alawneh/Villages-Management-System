@@ -15,7 +15,6 @@ function Overview({ stats }) {
                 <Statistics/>
                 <Charts/>
                 <Barchart />
-
             </div>
         </Layout>
     );
