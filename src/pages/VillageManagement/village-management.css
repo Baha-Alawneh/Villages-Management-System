@@ -143,7 +143,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 0.6vh;
+    gap: 1vh;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -224,8 +224,8 @@
     border-radius: 8px;
     padding: 0.5vw;
     cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: 550;
+    font-size: 0.95rem;
     transition: background-color 0.2s ease-in-out;
 }
 
@@ -252,7 +252,7 @@
     z-index: 1000;
 }
 
-.add-container{
+.add-,.popup-container{
     display: flex;
 }
 .popup-content {
@@ -380,4 +380,9 @@
         height: 55vh;
         font-size: 0.9em;
     }
+}
+
+input:disabled {
+    pointer-events: none;
+    opacity: 0.5; /* Optional: reduce opacity to indicate the button is disabled */
 }
