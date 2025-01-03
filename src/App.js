@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Overview from "./pages/overview/overview";
 import VillageManagement from "./pages/VillageManagement/villageManagement";
 import Chat from "./pages/chat/chat.js";
-
+import Dashboard from './pages/dashboard/dashboard.js';
 
 
 function App() {
