@@ -13,7 +13,7 @@
     padding-left: 1em;
     padding-right: 1em;
     overflow-y: auto; 
-    height: 150vh; 
+    height:100vh; 
     grid-area: overview;
 }
 

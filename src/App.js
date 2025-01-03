@@ -2,7 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashboard from "./pages/dashboard/dashboard";
 import Overview from "./pages/overview/overview";
 import VillageManagement from "./pages/VillageManagement/villageManagement";
 import Chat from "./pages/chat/chat.js";
@@ -27,6 +26,7 @@ function App() {
         <Route path="/chat" element={<Chat />} />
       </Routes>
     </Router>
+
 
 
 

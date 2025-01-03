@@ -11,7 +11,6 @@ function VillageManagement() {
   const [showPopup, setShowPopup] = useState(false);
   const handleClick = ()=>{
     setShowPopup(true);
-    console.log('jjjj');
   }
     return (
      
@@ -27,9 +26,9 @@ function VillageManagement() {
           <VillageList />
         </div>
 
-        {showPopup && <Popup onClose={() => setShowPopup(false)} />}
+        {showPopup && <AddVillageForm setShowPopup={setShowPopup} />}
 
-        <AddVillageForm />
+        <Popup />
         <UpdateVillageForm />
         <UpdateDemographicForm />
         </Layout>

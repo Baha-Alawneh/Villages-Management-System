@@ -29,7 +29,7 @@ function Charts() {
       textStyle: { color: "#fff", fontSize: 12 },
     },
     pieSliceText: "none",
-    chartArea: { width: "100%", height: "80%" },
+    chartArea: { width: "95%", height: "80%" },
   };
 
   return (
