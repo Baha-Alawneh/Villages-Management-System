@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/dashboard/dashboard";
 import Overview from "./pages/overview/overview";
 import VillageManagement from "./pages/VillageManagement/villageManagement";
+import Chat from "./pages/chat/chat.js";
 
 
 
@@ -15,17 +16,18 @@ function App() {
     populationSize: 660000,
     landArea: 11.88
   };
-  
+
   return (
-    
-      <Router>
+
+    <Router>
       <Dashboard />
-        <Routes>
-          <Route path="/" element={<Overview stats={stats} />} />
-          <Route path="/village-management" element={<VillageManagement />} />
-        </Routes>
-      </Router>
-    
+      <Routes>
+        <Route path="/" element={<Overview stats={stats} />} />
+        <Route path="/village-management" element={<VillageManagement />} />
+        <Route path="/chat" element={<Chat />} />
+      </Routes>
+    </Router>
+
 
 
 
