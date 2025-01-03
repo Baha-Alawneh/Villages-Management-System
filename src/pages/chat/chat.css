@@ -1,0 +1,141 @@
+:root {
+    --background-color:#1a202c;
+    --second-color:#1f2937;
+}
+
+
+
+/* body {
+    font-family: "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-areas: "dashboard chat";
+
+} */
+@media (max-width: 767px) {
+    body{
+        grid-template-columns: 1fr 7fr;
+
+    }
+}
+
+.container {
+    padding-left: 2vw;
+    grid-area: chat;
+    background-color: var(--background-color);
+    overflow-y: auto; 
+    height: 100vh; 
+}
+.chat-header {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    margin-left: auto;
+    padding: 0;
+}
+h1 {
+    padding-left: 1vw;
+    font-size: 1.5rem;
+    color: white;
+}
+.admin-list h1,h3 {
+    font-size: 1.3em;
+    color:#e5e7eb;
+}
+.search-bar {
+    margin-bottom: 2vh;
+}
+.search-bar input {
+    width: 95%;
+    padding: 1vh;
+    font-size: 1em;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    margin: auto;
+}
+.admin-list {
+    background-color: var(--second-color);
+    padding: 1vh;
+    border-radius: 8px;
+    width: 95%;
+}
+.admin-item {
+    display: inline-block;
+    text-align: center;
+    margin-left: 2.5vh;
+}
+.admin-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-bottom: 5px;
+        background-color: #ddd;
+        /* background-image: url('../resources/images/admin.png'); Path to your image */
+        background-size: cover;
+        background-position: center;
+        cursor: pointer;
+ }
+    
+ .admin-icon:hover {
+    background-color: #4b5563;
+    transition: background-color 0.2s ease-in-out;
+ }
+.admin-item span {
+    font-size: 1em;
+    color: #ddd;
+}
+.chat-window {
+    margin-top: 2vh;
+    background-color: var(--second-color);
+    border-radius: 10px;
+    padding: 2vh;
+    margin-bottom: 2vw;
+    width: 94%;
+}
+
+.chat-box {
+    height: 25vh;
+    margin-bottom: 2vh;
+    border: 1px solid #4b5563;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: var(--second-color);
+}
+
+.chat-box p {
+    margin: 5px 0;
+    color: #e5e7eb;
+
+}
+
+.message-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message-input .message {
+    height: 10vh;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.message-input .send {
+    width:fit-content;
+    padding: 1vh;
+    font-size: 1em;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.message-input .send:hover {
+    background-color: #0056b3;
+}
