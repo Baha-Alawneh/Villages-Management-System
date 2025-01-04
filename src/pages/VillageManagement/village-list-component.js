@@ -5,7 +5,7 @@
     import Popup from './popup-component';
     import UpdateVillageForm from './update-village-form-component'
     import UpdateDemographicForm from './update-demographic-form';
-    function VillageList() {
+    function VillageList({villagesList}) {
         const [currentPage, setCurrentPage] = useState(0);
         const [villages, setVillages] = useState([]);
         const [filteredVillages, setFilteredVillages] = useState([]);
@@ -20,8 +20,8 @@
         const VILLAGES_PER_PAGE = 5;
 
         useEffect(() => {
-            setVillages(villagesStaticList);
-            setFilteredVillages(villagesStaticList);
+            setVillages(villagesList);
+            setFilteredVillages(villagesList);
         }, []); 
 
         // Handle sorting and showing villages list
@@ -29,13 +29,13 @@
             let sortedVillages = [...filteredVillages]; 
             console.log(isSorted);
             if (isSorted) {
-            sortedVillages.sort((a, b) => a.name.localeCompare(b.name));
+            sortedVillages.sort((a, b) => a.village_name.localeCompare(b.village_name));
             }
             setVillages(sortedVillages);
         }, [isSorted,filteredVillages]);
 
         useEffect(()=>{
-            const filteredList =[...villagesStaticList].filter((e)=>e.name.toLowerCase().includes(searchInput.toLowerCase()));
+            const filteredList =[...villagesList].filter((e)=>e.village_name.toLowerCase().includes(searchInput.toLowerCase()));
             setFilteredVillages(filteredList);
         },[searchInput])
         const totalVillages = villages.length;
@@ -53,8 +53,9 @@
         };
 
         const handleDeleteVillage = (name) => {
+            console.log(name);
             setVillages((prevVillages) =>
-                prevVillages.filter((village) => village.name !== name)
+                prevVillages.filter((village) => village.village_name !== name)
             );
         };
 
@@ -74,7 +75,7 @@
             }));
             setSelectedVillage(village);
 
-            alert(`Update demographic data for ${village.name}`);
+            alert(`Update demographic data for ${village.village_name}`);
         };
 
         const handleSortBy = (event)=>{
@@ -120,8 +121,8 @@
                 <div className="list">
 
                 {currentVillages.map((village) => (
-                        <div key={village.name} className="component-container">
-                            <div className="name-container">{village.name}- {village.region}</div>
+                        <div key={village.village_name} className="component-container">
+                            <div className="name-container">{village.village_name}- {village.region}</div>
                             <div className="btns-container">
                                 <input
                                     type="button"
@@ -139,7 +140,7 @@
                                     type="button"
                                     className="delete-village"
                                     value="Delete Village"
-                                    onClick={() => handleDeleteVillage(village.name)}
+                                    onClick={() => handleDeleteVillage(village.village_name)}
                                 />
                                 <input
                                     type="button"
