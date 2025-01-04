@@ -1,11 +1,10 @@
 import React from "react";
-import "./chat.css"
 
 
 function chatWindow() {
 
 return (
-    <div className="chat-window">
+    <div className='chat-window'>
     <h3 id="admin-name">test</h3>
     <div className="chat-box">
         <p><strong>Admin1:</strong> <span>Hello! How can I assist you today?</span></p>

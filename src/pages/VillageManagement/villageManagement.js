@@ -28,9 +28,7 @@ function VillageManagement() {
 
         {showPopup && <AddVillageForm setShowPopup={setShowPopup} />}
 
-        <Popup />
-        <UpdateVillageForm />
-        <UpdateDemographicForm />
+
         </Layout>
       
     );

@@ -2,7 +2,7 @@ import ChatHeader from "./chat-header";
 import ChatWindow from "./chat-window";
 import React from "react";
 import Layout from "../../Components/Layout";
-
+import './chat.css'
 function Chat() {
 return (
   <Layout>
