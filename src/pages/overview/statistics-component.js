@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-function Statistics (options) {
+function Statistics ({villages}) {
     const stats = {
-        villageCount: 8,
-        urbanCount: 3,
+        villageCount: villages.length,
+        urbanCount: villages.filter(village => village.categories.includes("urban")).length,
         populationSize: 660000,
         landArea: 11.88};    
       const { villageCount, urbanCount, populationSize, landArea } = stats;
