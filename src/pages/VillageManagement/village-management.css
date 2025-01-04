@@ -1,6 +1,6 @@
 :root {
     --village-color: #1a202c;
-    --second-color: #2d3748;
+    --secondry-color: #2d3748;
     --third-color: #374151;
     --component-color: #4a5568;
     --text-color: #e5e7eb;
@@ -39,7 +39,7 @@
 }
 
 .add-new-village:hover {
-    background-color: var(--second-color);
+    background-color: var(--secondry-color);
     cursor: pointer;
 }
 
@@ -54,7 +54,7 @@
 }
 
 .list-container {
-    background-color: var(--second-color);
+    background-color: var(--secondry-color);
     width: 95%;
     margin-left: 2.5%;
     border-radius: 8px;
@@ -123,7 +123,7 @@
     width: 50px;
     color: var(--text-color);
     border-radius: 8px;
-    border: solid var(--second-color);
+    border: solid var(--secondry-color);
     padding: 0.3vw;
 }
 
@@ -252,11 +252,11 @@
     z-index: 1000;
 }
 
-.add-,.popup-container{
+.add-container,.popup-container,.update-container,.update-demographic-container{
     display: flex;
 }
 .popup-content {
-    background: var(--second-color);
+    background: var(--secondry-color);
     color: #cbd5e0;
     padding-left: 2vw;
     padding-top: 1vh;
@@ -294,7 +294,7 @@
 .update-village-container,
 .update-village-demographic-container {
     display: flex;
-    background-color: var(--second-color);
+    background-color: var(--secondry-color);
     flex-direction: column;
     justify-content: space-evenly;
     align-items: left;
@@ -337,7 +337,7 @@
 
 .add-village, .update-village-btn,.update-demographic-btn {
     background-color: var(--component-color);
-    border: solid var(--second-color);
+    border: solid var(--secondry-color);
     color: var(--text-color);
     border-radius: 8px;
     text-align: center;

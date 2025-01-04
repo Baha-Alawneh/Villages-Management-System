@@ -6,7 +6,7 @@ function Popup({ onClose, village }) {
     return (
         <div className="popup-container" id="popup">
             <div className="popup-content">
-                <button className="close-popup" id="close-popup" value="" onClick={()=>onClose(false)}></button>
+                <button className="close-popup" id="close-popup" value="" onClick={()=>onClose()}></button>
                 <h2>Village Details</h2>
                 <p id="popup-details">
                     <strong>Village Name:</strong> {village.name} <br/>
