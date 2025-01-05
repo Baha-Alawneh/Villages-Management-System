@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'; // Import useEffect
 import './overview.css'
 import L from 'leaflet'; // Import Leaflet
 
-function Header (){
+function Header ({villages}){
     useEffect(() =>{
-        let vill =[];
+        let vill =villages;
         // Create the map
         var map = L.map('map-con').setView([32.22111, 35.25444], 7);
 
@@ -19,14 +19,14 @@ function Header (){
         vill.forEach(village => {
             L.marker([village.latitude, village.longitude])
                 .addTo(map)
-                .bindPopup(`<b>${village.name}</b><br>${village.population}`);
+                .bindPopup(`<b>${village.village_name}</b>`);
         });
 
         // Cleanup function to remove the map instance on unmount
         return () => {
             map.remove();
         };
-    },[]);
+    });
 
 
 

@@ -1,12 +1,13 @@
 import React from 'react';
 import './village-management.css'
 
-function AddVillageForm() {
+function AddVillageForm({setShowPopup}) {
+
     return (
         <div className="add-container" id="add-container">
             <div id="add-new-village-container" className="add-new-village-container">
                 <div className="close-add-container">
-                    <button className="close-popup" id="close-add" value=""></button>
+                    <button className="close-popup" id="close-add" value="" onClick={()=>setShowPopup(false)}></button>
                 </div>
                 <h1>Add New Village</h1>
                 <label htmlFor="village-name">Village Name: </label>

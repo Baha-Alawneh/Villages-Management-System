@@ -3,12 +3,12 @@
 import React from 'react';
 import './village-management.css'
 
-function UpdateDemographicForm() {
+function UpdateDemographicForm({onClose,village}) {
     return (
         <div className="update-demographic-container" id="update-demographic-container">
             <div id="update-village-demographic-container" className="update-village-demographic-container">
                 <div className="close-update-demographic-container">
-                    <button className="close-popup" id="close-update-demographic" value=""></button>
+                    <button className="close-popup" id="close-update-demographic" value="" onClick={()=>onClose()}></button>
                 </div>
                 <h1 id="demographic-header"></h1>
                 <label htmlFor="population-size">Population Size: </label>
