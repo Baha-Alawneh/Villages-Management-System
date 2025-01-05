@@ -8,22 +8,33 @@ import Barchart from "./barchart-component";
 
 // Apollo Client setup
 import { useQuery } from '@apollo/client';
-import { GET_VILLAGES } from '../../grqphql/queries'
-function Overview({ stats }) {
-    const { villageCount, urbanCount, populationSize, landArea } = stats;
-    const {loading,error,data}=useQuery(GET_VILLAGES);
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+import { GET_VILLAGES } from '../../grqphql/villages-queries'
+import { GET_DEMOGRAPHICS } from "../../grqphql/demographics-queries";
+function Overview() {
+    // Fetch villages data
+    const { loading: loadingVillages, error: errorVillages, data: dataVillages } = useQuery(GET_VILLAGES);
+    // Fetch demographics data
+    const { loading: loadingDemographics, error: errorDemographics, data: dataDemographics } = useQuery(GET_DEMOGRAPHICS);
+
+    // Combined loading state
+    if (loadingVillages || loadingDemographics) return <p>Loading...</p>;
+    // Combined error state
+    if (errorVillages) return <p>Error in villages query: {errorVillages.message}</p>;
+    if (errorDemographics) return <p>Error in demographics query: {errorDemographics.message}</p>;
+
     return (
         <Layout>
             <div className="overview-container">
-                <Header villages ={data?.villages || []}/>
-                <Statistics villages ={data?.villages || []} />
-                <Charts/>
-                <Barchart />
+                <Header villages={dataVillages?.villages || []} />
+                <Statistics villages={dataVillages?.villages || []}  demographics={dataDemographics?.demographics || []}/>
+                <Charts demographics={dataDemographics?.demographics || []}/>
+                <Barchart demographics={dataDemographics?.demographics || []} villages={dataVillages?.villages || [].map(({ village_id, village_name }) => ({village_id,village_name,}))}/>
             </div>
         </Layout>
     );
 }
 
 export default Overview;
+
+
+

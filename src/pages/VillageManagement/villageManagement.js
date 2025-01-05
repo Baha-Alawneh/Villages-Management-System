@@ -9,7 +9,7 @@ import Layout from "../../Components/Layout";
 
 // Apollo Client setup
 import { useQuery } from '@apollo/client';
-import { GET_VILLAGES } from '../../grqphql/queries'
+import { GET_VILLAGES } from '../../grqphql/villages-queries'
 function VillageManagement() {
   const [showPopup, setShowPopup] = useState(false);
   const {loading, error, data} = useQuery(GET_VILLAGES);

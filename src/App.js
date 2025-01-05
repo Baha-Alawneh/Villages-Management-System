@@ -10,19 +10,14 @@ import { ApolloProvider } from '@apollo/client';
 import client from './lib/apolloClient';
 
 function App() {
-  const stats = {
-    villageCount: 8,
-    urbanCount: 3,
-    populationSize: 660000,
-    landArea: 11.88
-  };
+
 
   return (
     <ApolloProvider client={client}>
     <Router>
       <Dashboard />
       <Routes>
-        <Route path="/" element={<Overview stats={stats} />} />
+        <Route path="/" element={<Overview />} />
         <Route path="/village-management" element={<VillageManagement />} />
         <Route path="/chat" element={<Chat />} />
       </Routes>

@@ -17,7 +17,6 @@ function Header ({villages}){
 
         // Add markers for each village
         vill.forEach(village => {
-            console.log(village);
             L.marker([village.latitude, village.longitude])
                 .addTo(map)
                 .bindPopup(`<b>${village.village_name}</b>`);
