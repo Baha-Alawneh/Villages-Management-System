@@ -75,7 +75,6 @@
             }));
             setSelectedVillage(village);
 
-            alert(`Update demographic data for ${village.village_name}`);
         };
 
         const handleSortBy = (event)=>{
