@@ -6,25 +6,21 @@ import Overview from "./pages/overview/overview";
 import VillageManagement from "./pages/VillageManagement/villageManagement";
 import Chat from "./pages/chat/chat.js";
 import Dashboard from './pages/dashboard/dashboard.js';
+import Gallery from './pages/gallary/gallary.js';
 import { ApolloProvider } from '@apollo/client';
 import client from './lib/apolloClient';
 
 function App() {
-  const stats = {
-    villageCount: 8, 
-    urbanCount: 3,
-    populationSize: 660000,
-    landArea: 11.88
-  };
 
   return (
     <ApolloProvider client={client}>
     <Router>
-      <Dashboard />
       <Routes>
         <Route path="/" element={<Overview />} />
         <Route path="/village-management" element={<VillageManagement />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/gallery" element={<Gallery />} />
+
       </Routes>
     </Router>
     </ApolloProvider>
