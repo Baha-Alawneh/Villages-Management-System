@@ -264,7 +264,7 @@
     text-align: left;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     width: calc(30vh + 100px);
-    height: calc(40vh + 100px);
+    height: calc(45vh + 100px);
     line-height: 3.5vh;
     padding-right: 1vw;
 }
@@ -386,4 +386,27 @@
 input:disabled {
     pointer-events: none;
     opacity: 0.5; /* Optional: reduce opacity to indicate the button is disabled */
+}
+
+.imageViewContainer {
+    width: calc(100% - 3vw);
+    display: inline-block;
+    margin: 1rem;
+    border: 2px solid var(--component-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--third-color);
+}
+
+.imageViewContainer img {
+    max-width: 200px;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.imageViewContainer:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
