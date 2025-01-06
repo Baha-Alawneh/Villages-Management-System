@@ -10,7 +10,12 @@ import { ApolloProvider } from '@apollo/client';
 import client from './lib/apolloClient';
 
 function App() {
-
+  const stats = {
+    villageCount: 8, 
+    urbanCount: 3,
+    populationSize: 660000,
+    landArea: 11.88
+  };
 
   return (
     <ApolloProvider client={client}>
