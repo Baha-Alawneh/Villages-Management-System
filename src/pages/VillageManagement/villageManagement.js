@@ -7,11 +7,16 @@ import UpdateVillageForm from './update-village-form-component';
 import UpdateDemographicForm from './update-demographic-form';
 import Layout from "../../Components/Layout";
 
+// Apollo Client setup
+import { useQuery } from '@apollo/client';
+import { GET_VILLAGES } from '../../grqphql/villages-queries'
 function VillageManagement() {
   const [showPopup, setShowPopup] = useState(false);
+  const {loading, error, data} = useQuery(GET_VILLAGES);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error {error.message}</p>;
   const handleClick = ()=>{
     setShowPopup(true);
-    console.log('jjjj');
   }
     return (
      
@@ -24,14 +29,12 @@ function VillageManagement() {
             value="Add New Village"
             onClick={handleClick}
           />
-          <VillageList />
+          <VillageList villagesList ={data?.villages || []}/>
         </div>
 
-        {showPopup && <Popup onClose={() => setShowPopup(false)} />}
+        {showPopup && <AddVillageForm setShowPopup={setShowPopup} />}
 
-        <AddVillageForm />
-        <UpdateVillageForm />
-        <UpdateDemographicForm />
+
         </Layout>
       
     );

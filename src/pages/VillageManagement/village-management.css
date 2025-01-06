@@ -1,6 +1,6 @@
 :root {
     --village-color: #1a202c;
-    --second-color: #2d3748;
+    --secondry-color: #2d3748;
     --third-color: #374151;
     --component-color: #4a5568;
     --text-color: #e5e7eb;
@@ -39,7 +39,7 @@
 }
 
 .add-new-village:hover {
-    background-color: var(--second-color);
+    background-color: var(--secondry-color);
     cursor: pointer;
 }
 
@@ -54,7 +54,7 @@
 }
 
 .list-container {
-    background-color: var(--second-color);
+    background-color: var(--secondry-color);
     width: 95%;
     margin-left: 2.5%;
     border-radius: 8px;
@@ -123,7 +123,7 @@
     width: 50px;
     color: var(--text-color);
     border-radius: 8px;
-    border: solid var(--second-color);
+    border: solid var(--secondry-color);
     padding: 0.3vw;
 }
 
@@ -143,7 +143,7 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    gap: 0.6vh;
+    gap: 1vh;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -224,8 +224,8 @@
     border-radius: 8px;
     padding: 0.5vw;
     cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: 550;
+    font-size: 0.95rem;
     transition: background-color 0.2s ease-in-out;
 }
 
@@ -252,9 +252,11 @@
     z-index: 1000;
 }
 
-
+.add-container,.popup-container,.update-container,.update-demographic-container{
+    display: flex;
+}
 .popup-content {
-    background: var(--second-color);
+    background: var(--secondry-color);
     color: #cbd5e0;
     padding-left: 2vw;
     padding-top: 1vh;
@@ -279,8 +281,8 @@
     border-radius: 5px;
     cursor: pointer;
     margin: 0;
-    /* background-image: url('../resources/images/exit.png'); */
-    background-size: cover;
+    background-image: url('../../../Resources/images/exit.png'); 
+    background-size:  20px;
     background-position: left;
     background-repeat: no-repeat;
     width: fit-content;
@@ -292,7 +294,7 @@
 .update-village-container,
 .update-village-demographic-container {
     display: flex;
-    background-color: var(--second-color);
+    background-color: var(--secondry-color);
     flex-direction: column;
     justify-content: space-evenly;
     align-items: left;
@@ -335,7 +337,7 @@
 
 .add-village, .update-village-btn,.update-demographic-btn {
     background-color: var(--component-color);
-    border: solid var(--second-color);
+    border: solid var(--secondry-color);
     color: var(--text-color);
     border-radius: 8px;
     text-align: center;
@@ -378,4 +380,9 @@
         height: 55vh;
         font-size: 0.9em;
     }
+}
+
+input:disabled {
+    pointer-events: none;
+    opacity: 0.5; /* Optional: reduce opacity to indicate the button is disabled */
 }

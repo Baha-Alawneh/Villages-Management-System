@@ -2,12 +2,12 @@
 import React from 'react';
 import './village-management.css'
 
-function UpdateVillageForm() {
+function UpdateVillageForm({onClose, village}) {
     return (
         <div className="update-container" id="update-container">
             <div id="update-village-container" className="update-village-container">
                 <div className="close-update-container">
-                    <button className="close-popup" id="close-update" value=""></button>
+                    <button className="close-popup" id="close-update" value="" onClick={()=>onClose()}></button>
                 </div>
                 <h1>Update Village</h1>
                 <label htmlFor="village-name">Village Name: </label>

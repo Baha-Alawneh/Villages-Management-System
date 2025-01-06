@@ -2,7 +2,7 @@ import ChatHeader from "./chat-header";
 import ChatWindow from "./chat-window";
 import React, { useEffect, useRef, useState } from "react";
 import Layout from "../../Components/Layout";
-
+import './chat.css'
 function Chat() {
   const [admins, setAdmins] = useState([]);
   const [currentAdmin, setCurrentAdmin] = useState();

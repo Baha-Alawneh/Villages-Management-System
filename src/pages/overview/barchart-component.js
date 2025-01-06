@@ -1,39 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Chart } from "react-google-charts";
 
-function Barchart() {
+function Barchart({demographics, villages}) {
   const [barData, setBarData] = useState([]);
 
   useEffect(() => {
     // Static data for the chart
-    const demographicData = [
-        { villageName: "Village A", populationSize: 1200 },
-        { villageName: "Village B", populationSize: 800 },
-        { villageName: "Village C", populationSize: 1500 },
-        { villageName: "Village D", populationSize: 600 },
-        { villageName: "Village A", populationSize: 1200 },
-        { villageName: "Village B", populationSize: 800 },
-        { villageName: "Village C", populationSize: 1500 },
-        { villageName: "Village D", populationSize: 600 },
-        { villageName: "Village A", populationSize: 1200 },
-        { villageName: "Village B", populationSize: 800 },
-        { villageName: "Village C", populationSize: 1500 },
-        { villageName: "Village D", populationSize: 600 },
-        { villageName: "Village A", populationSize: 1200 },
-        { villageName: "Village B", populationSize: 800 },
-        { villageName: "Village C", populationSize: 1500 },
-        { villageName: "Village D", populationSize: 600 },
-        { villageName: "Village A", populationSize: 1200 },
-        { villageName: "Village B", populationSize: 800 },
-        { villageName: "Village C", populationSize: 1500 },
-        { villageName: "Village D", populationSize: 600 },
-    ];
+
 
     // Prepare data for the Google Chart
     const calculateCityPopulation = () => {
       const result = [["City", "Population", { role: "style" }]];
-      demographicData.forEach((village) => {
-        result.push([village.villageName, village.populationSize, "#3c5b66"]);
+      demographics.forEach((demo) => {
+        const village = villages.find((v) => v.village_id === demo.village_id);
+        const VillageName = village? village.village_name : "Unknown Village";
+        result.push([VillageName, Number(demo.population_size), "#3c5b66"]);
       });
       return result;
     };
@@ -76,5 +57,6 @@ function Barchart() {
     </div>
   );
 }
+
 
 export default Barchart;

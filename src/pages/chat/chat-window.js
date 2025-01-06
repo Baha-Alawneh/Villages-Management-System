@@ -1,5 +1,4 @@
 import React from "react";
-import "./chat.css"
 
 
 function chatWindow({ messages, message, currentAdmin, send }) {
