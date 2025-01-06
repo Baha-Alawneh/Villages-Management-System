@@ -15,10 +15,10 @@ function Popup({ onClose, village }) {
                     <strong>Latitude:</strong> {village.latitude} <br/>
                     <strong>Longitude:</strong> {village.longitude} <br/>
                     <strong>Tages:</strong> {village.categories} <br/>
-                    <a href={village.image} target="_blank" rel="noopener noreferrer">
-                        <img src={village.image} alt="Village" style={{ maxWidth: "50px", height: "auto" }} />
-                        Village Image
-                    </a>                </p>
+                    <a href={village.image_url} target="_blank" rel="noopener noreferrer" className="imageViewContainer">
+                        <img src={village.image_url} alt="Village" style={{ maxWidth: "200px", maxHeight: "150px", margin:'auto' }} />   
+                    </a> 
+                </p>
             </div>
         </div>
     );
