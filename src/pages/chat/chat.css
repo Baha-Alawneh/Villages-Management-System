@@ -103,6 +103,7 @@ h1 {
     border: 1px solid #4b5563;
     border-radius: 5px;
     padding: 10px;
+    color:white;
     background-color: var(--second-color);
 }
 
