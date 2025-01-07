@@ -9,6 +9,8 @@ import Dashboard from './pages/dashboard/dashboard.js';
 import Gallery from './pages/gallary/gallary.js';
 import { ApolloProvider } from '@apollo/client';
 import client from './lib/apolloClient';
+import SignUp from './pages/signup/signup.js';
+import Login from './pages/login/login.js';
 
 function App() {
 
@@ -16,6 +18,8 @@ function App() {
     <ApolloProvider client={client}>
     <Router>
       <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Overview />} />
         <Route path="/village-management" element={<VillageManagement />} />
         <Route path="/chat" element={<Chat />} />
