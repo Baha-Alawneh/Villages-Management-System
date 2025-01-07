@@ -8,6 +8,8 @@ import Chat from "./pages/chat/chat.js";
 import Dashboard from './pages/dashboard/dashboard.js';
 import { ApolloProvider } from '@apollo/client';
 import client from './lib/apolloClient';
+import SignUp from './pages/signup/signup.js';
+import Login from './pages/login/login.js';
 
 function App() {
   const stats = {
@@ -22,6 +24,8 @@ function App() {
     <Router>
       <Dashboard />
       <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Overview />} />
         <Route path="/village-management" element={<VillageManagement />} />
         <Route path="/chat" element={<Chat />} />
