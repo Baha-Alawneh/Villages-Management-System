@@ -108,6 +108,7 @@ h1 {
 }
 
 .chat-box p {
+    text-align: left;
     margin: 5px 0;
     color: #e5e7eb;
 
