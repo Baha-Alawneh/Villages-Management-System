@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "../signup/register.css";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { LOGIN_USER } from "../../grqphql/auth";
 import { useMutation } from '@apollo/client';
 const LoginForm = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginUser] = useMutation(LOGIN_USER);
+    const navigate = useNavigate();
+
     const handleLogin = async (e) => { 
         e.preventDefault();
         if (!username || !password) {
@@ -21,12 +23,14 @@ const LoginForm = () => {
             console.log("heelllo44");
             if (response && response.data) {
                 const { token } = response.data.login;
+                localStorage.setItem('authToken', token);
                 console.log("Login successful! Token:", token);
                 alert("Login successful!");
+                navigate("/");
             }
         } catch (err) {
             console.error("Login failed:", err);
-            alert("Invalid credentials!");
+            alert("Invalid credentials!"); 
         }
         setUsername("");
         setPassword("");

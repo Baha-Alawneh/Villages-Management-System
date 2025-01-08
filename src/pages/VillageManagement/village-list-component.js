@@ -9,7 +9,7 @@
         const [currentPage, setCurrentPage] = useState(0);
         const [villages, setVillages] = useState([]);
         const [filteredVillages, setFilteredVillages] = useState([]);
-        const [isSorted,setSort] = useState(false);
+        const [isSorted, setSort] = useState(false);
         const [searchInput,setSearchInput] = useState('');
         const [isPopupVisible, setPopups] = useState({
             view: false,
@@ -75,7 +75,6 @@
             }));
             setSelectedVillage(village);
 
-            alert(`Update demographic data for ${village.village_name}`);
         };
 
         const handleSortBy = (event)=>{

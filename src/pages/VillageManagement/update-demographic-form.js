@@ -10,7 +10,7 @@ function UpdateDemographicForm({onClose,village}) {
                 <div className="close-update-demographic-container">
                     <button className="close-popup" id="close-update-demographic" value="" onClick={()=>onClose()}></button>
                 </div>
-                <h1 id="demographic-header"></h1>
+                <h2 id="demographic-header"> Add demographic data for {village.village_name}</h2>
                 <label htmlFor="population-size">Population Size: </label>
                 <input type="text" id="population-size" required />
 

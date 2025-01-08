@@ -1,4 +1,3 @@
-// queries.js
 import { gql } from '@apollo/client';
 
 export const GET_VILLAGES = gql`
@@ -21,6 +20,12 @@ export const ADD_VILLAGE = gql`
     addVillage(villageData: $villageData) {
       village_id
       village_name
+      region
+      land_area
+      latitude
+      longitude
+      categories
+      image_url
     }
   }
 `;
