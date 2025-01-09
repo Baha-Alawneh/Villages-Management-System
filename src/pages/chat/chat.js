@@ -8,16 +8,15 @@ import { GET_USER_BY_ID, GET_ADMINS, GET_USERS } from "../../grqphql/auth.js";
 import { GET_CHAT } from "../../grqphql/chat.js";
 
 function Chat() {
-  const [userList, setUserList] = useState([]); // List of recipients (admins/users)
-  const [filteredList, setFilteredList] = useState([]); // Filtered recipient list
+  const [userList, setUserList] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
   const [currentRecipient, setCurrentRecipient] = useState(null);
   const [wsStatus, setWsStatus] = useState('disconnected');
   const search = useRef(null);
   const messageInput = useRef(null);
-  const [chatMessages, setChatMessages] = useState(''); // Chat history
+  const [chatMessages, setChatMessages] = useState('');
   const [user, setUser] = useState(null);
-  const [oldChat, setOldChat] = useState(null);
-  // Decode token to get user details
+  const [chatHistories, setChatHistories] = useState({});
   const token = localStorage.getItem('authToken');
   const tokenParts = token.split('.');
   const decodedToken = JSON.parse(atob(tokenParts[1]));
@@ -31,15 +30,12 @@ function Chat() {
   const [fetchChat, { data: chatData }] = useLazyQuery(GET_CHAT);
 
   const ws = useRef(null);
-
-  // Create a ref for currentRecipient to ensure the latest value is used in WebSocket handlers
   const currentRecipientRef = useRef(currentRecipient);
 
   useEffect(() => {
-    currentRecipientRef.current = currentRecipient; // Update the ref whenever currentRecipient changes
+    currentRecipientRef.current = currentRecipient;
   }, [currentRecipient]);
 
-  // Set user details
   useEffect(() => {
     if (userData) {
       setUser(userData.userById);
@@ -58,12 +54,19 @@ function Chat() {
 
   const HandleClick = (username) => {
     console.log("Selected recipient: ", username);
-    setChatMessages('');
     setCurrentRecipient(username);
-    if (role === 'admin') {
-      fetchChat({ variables: { user: username, admin: user.username } });
+
+    // Check if chat history for the recipient is already cached
+    if (chatHistories[username]) {
+      setChatMessages(chatHistories[username]); // Load chat from cache
     } else {
-      fetchChat({ variables: { user: user.username, admin: username } });
+      setChatMessages(''); // Clear chat while fetching new data
+      // Fetch chat from the server if not cached
+      const variables =
+        role === 'admin'
+          ? { user: username, admin: user.username }
+          : { user: user.username, admin: username };
+      fetchChat({ variables });
     }
   };
 
@@ -72,20 +75,12 @@ function Chat() {
       ws.current = new WebSocket("ws://localhost:4000");
 
       ws.current.onopen = () => {
-        let isCurrentAdmin;
         console.log("WebSocket connection established");
-        console.log(role);
-        if (role === 'admin') {
-          isCurrentAdmin = true;
-        } else if (role === 'user') {
-          isCurrentAdmin = false;
-        }
-        console.log(isCurrentAdmin + " is admin");
         ws.current.send(
           JSON.stringify({
             type: "authenticate",
             user_id: userId,
-            isAdmin: isCurrentAdmin,
+            isAdmin: role === 'admin',
           })
         );
         setWsStatus('connected');
@@ -93,15 +88,22 @@ function Chat() {
 
       ws.current.onmessage = (event) => {
         const message = JSON.parse(event.data);
-        if (message.type === "welcome") {
-          console.log("Welcome: ", message.id);
-        } else if (message.type === "direct-message") {
-          console.log("Direct Messageeeeee: ", message.from, currentRecipientRef.current);
-          
-          if (currentRecipientRef.current && message.from === currentRecipientRef.current) {
-            console.log("Direct Message: ", message.from, currentRecipientRef.current);
-            setChatMessages((prev) => prev + message.from + ": " + message.content + "\r\n");
-          }
+        if (message.type === "direct-message") {
+          console.log("Direct Message: ", message);
+          const { from, content } = message;
+
+          // Update the chat history for the recipient
+          setChatHistories((prevHistories) => {
+            const updatedHistory = {
+              ...prevHistories,
+              [from]: (prevHistories[from] || '') + `\r\n${from}: ${content}`,
+            };
+            // Update messages if the recipient is currently selected
+            if (currentRecipientRef.current === from) {
+              setChatMessages(updatedHistory[from]);
+            }
+            return updatedHistory;
+          });
         }
       };
 
@@ -122,11 +124,19 @@ function Chat() {
     };
   }, []);
 
-  // Send message
+  useEffect(() => {
+    if (chatData && chatData.chat) {
+      const formattedMessages = formatChatMessages(chatData.chat);
+      setChatHistories((prevHistories) => ({
+        ...prevHistories,
+        [currentRecipient]: formattedMessages,
+      }));
+      setChatMessages(formattedMessages);
+    }
+  }, [chatData]);
+
   const handleSend = () => {
     const message = messageInput.current.value;
-    let isCurrentAdmin = role === 'admin';
-
     if (message && currentRecipient) {
       if (ws.current && ws.current.readyState === WebSocket.OPEN) {
         ws.current.send(
@@ -135,43 +145,46 @@ function Chat() {
             from: user.username,
             to: currentRecipient,
             content: message,
-            isAdmin: isCurrentAdmin,
+            isAdmin: role === 'admin',
           })
         );
-        setChatMessages((prev) => prev + "you: " + message + "\r\n");
+
+        setChatHistories((prevHistories) => {
+          const updatedHistory = {
+            ...prevHistories,
+            [currentRecipient]:
+              (prevHistories[currentRecipient] || '') +
+              `\r\nyou: ${message}`,
+          };
+          setChatMessages(updatedHistory[currentRecipient]);
+          return updatedHistory;
+        });
+
         messageInput.current.value = "";
       }
     }
   };
 
   const formatChatMessages = (chat) => {
-    const messages = chat.split(','); // Split messages by commas
-    const formattedMessages = messages.map((message) => {
-      const [sender, content] = message.split(':'); // Split by colon to get sender and content
-      // Check if the sender is the current user and format accordingly
-      if (sender === user.username) {
-        return `you: ${content}`; // Format messages from the current user as "you: <content>"
-      }
-      return `${sender}: ${content}`; // Keep other messages as they are
-    });
-    return formattedMessages.join('\r\n'); // Join the formatted messages with a newline
+    const messages = chat.split(',');
+    return messages
+      .map((message) => {
+        const [sender, content] = message.split(':');
+        return sender === user.username
+          ? `you: ${content}`
+          : `${sender}: ${content}`;
+      })
+      .join("\r\n");
   };
 
-  // Search recipients
   const handleSearch = () => {
     if (search.current) {
       const searchTerm = search.current.value.toLowerCase();
-      const filtered = userList.filter((u) => u.username.toLowerCase().includes(searchTerm));
-      setFilteredList(filtered);
+      setFilteredList(
+        userList.filter((u) => u.username.toLowerCase().includes(searchTerm))
+      );
     }
   };
-
-  useEffect(() => {
-    if (chatData && chatData.chat) {
-      const formattedMessages = formatChatMessages(chatData.chat);
-      setChatMessages(formattedMessages);
-    }
-  }, [chatData]);
 
   return (
     <Layout>
@@ -179,15 +192,15 @@ function Chat() {
         <ChatHeader
           role={role}
           search={search}
-          admins={filteredList} // Pass dynamic list (admins/users)
-          handleClick={HandleClick} // Handle recipient selection
-          handleSearch={handleSearch} // Handle search input
+          admins={filteredList}
+          handleClick={HandleClick}
+          handleSearch={handleSearch}
         />
         <ChatWindow
           messages={chatMessages}
           message={messageInput}
-          currentAdmin={currentRecipient} // Dynamic recipient
-          send={handleSend} // Send message
+          currentAdmin={currentRecipient}
+          send={handleSend}
         />
       </div>
     </Layout>
