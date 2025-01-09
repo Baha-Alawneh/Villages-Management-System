@@ -105,6 +105,7 @@ h1 {
     padding: 10px;
     color:white;
     background-color: var(--second-color);
+    overflow-y: scroll;
 }
 
 .chat-box p {
