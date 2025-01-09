@@ -49,6 +49,8 @@ function AddVillageForm({ setShowPopup }) {
     try{
       const response = await addVillage({ variables: {  villageData: villageData }, });
     setShowPopup(false);  // Close the popup after successful submission
+    window.location.reload(); // Reload the page
+
 
     } catch(error){
       console.error('Error adding village:', error);

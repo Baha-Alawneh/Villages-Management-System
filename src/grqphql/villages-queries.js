@@ -35,3 +35,18 @@ export const DELETE_VILLAGE = gql`
     deleteVillage(villageName: $villageName)
   }
 `;
+
+export const UPDATE_VILLAGE = gql`
+  mutation UpdateVillage($villageData: VillageInput!) {
+    updateVillage(villageData: $villageData){
+      village_id
+      village_name
+      region
+      land_area
+      latitude
+      longitude
+      categories
+      image_url
+    }
+  }
+`;

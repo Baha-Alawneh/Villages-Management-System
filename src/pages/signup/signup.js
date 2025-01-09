@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import './register.css'
+//import './register.css'
 import { SIGNUP_USER } from "../../grqphql/auth";
 import { useMutation } from "@apollo/client";
 const SignUp = () => {

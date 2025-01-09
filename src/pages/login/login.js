@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../signup/register.css";
+//import "../signup/register.css";
 import { Link,useNavigate } from "react-router-dom";
 import { LOGIN_USER } from "../../grqphql/auth";
 import { useMutation } from '@apollo/client';
