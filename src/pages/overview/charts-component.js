@@ -2,23 +2,11 @@ import React, { useEffect } from "react";
 import { Chart } from "react-google-charts";
 
 function Charts({demographics}) {
-  // Data for the charts
   const ageData = calculateAgeData(demographics);
-  //[
-  //   ["Age Group", "Number of People"],
-  //   ["0-18", 500],
-  //   ["19-35", 700],
-  //   ["36-50", 300],
-  //   ["51-65", 200],
-  //   ["65+", 100],
-  // ];
+
 
   const genderData =calculateGenderData(demographics);
-  //  [
-  //   ["Gender", "Number of People"],
-  //   ["Female", 800],
-  //   ["Male", 1000],
-  // ];
+
 
   // Chart options
   const chartOptions = {

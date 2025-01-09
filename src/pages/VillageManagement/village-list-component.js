@@ -5,6 +5,10 @@
     import Popup from './popup-component';
     import UpdateVillageForm from './update-village-form-component'
     import UpdateDemographicForm from './update-demographic-form';
+    import {DELETE_VILLAGE} from '../../grqphql/villages-queries'
+    import { useMutation,useQuery } from '@apollo/client';
+    import { GET_DEMOGRAPHICS } from "../../grqphql/demographics-queries";
+
     function VillageList({villagesList}) {
         const [currentPage, setCurrentPage] = useState(0);
         const [villages, setVillages] = useState([]);
@@ -17,23 +21,23 @@
             updateDemographic: false,
         });
         const [selectedVillage, setSelectedVillage] = useState(null);
+        const [selectedDemographic, setSelectedDemographic] = useState(null);
         const VILLAGES_PER_PAGE = 5;
-
         useEffect(() => {
             setVillages(villagesList);
             setFilteredVillages(villagesList);
         }, []); 
-
+        
         // Handle sorting and showing villages list
         useEffect(() => {
-            let sortedVillages = [...filteredVillages]; 
+            let sortedVillages = [...filteredVillages];
             console.log(isSorted);
             if (isSorted) {
-            sortedVillages.sort((a, b) => a.village_name.localeCompare(b.village_name));
+                sortedVillages.sort((a, b) => a.village_name.localeCompare(b.village_name));
             }
             setVillages(sortedVillages);
         }, [isSorted,filteredVillages]);
-
+        
         useEffect(()=>{
             const filteredList =[...villagesList].filter((e)=>e.village_name.toLowerCase().includes(searchInput.toLowerCase()));
             setFilteredVillages(filteredList);
@@ -42,6 +46,14 @@
         const totalPages = Math.ceil(totalVillages / VILLAGES_PER_PAGE);
         // Get the villages for the current page
         const currentVillages = villages.slice(currentPage * VILLAGES_PER_PAGE, (currentPage + 1) * VILLAGES_PER_PAGE);
+        const [deleteVillage, {loading: loadingDeleteVillage,error: errorDeletingVillage, data: dataDelteVillage}] = useMutation(DELETE_VILLAGE);
+        const { loading: loadingDemographics, error: errorDemographics, data: dataDemographics } = useQuery(GET_DEMOGRAPHICS);
+        
+        if(loadingDeleteVillage || loadingDemographics) 
+            return <p>Loading...</p>;
+        if (errorDeletingVillage )return <p>Error: {errorDeletingVillage.message}</p>;
+        if ( errorDemographics )return <p>Error: {errorDemographics.message}</p>;
+
 
         const handleShowPopup = (village) => {
             setPopups(prevState => ({
@@ -54,6 +66,8 @@
 
         const handleDeleteVillage = (name) => {
             console.log(name);
+            const VillageName = {  name }; 
+            deleteVillage(VillageName);
             setVillages((prevVillages) =>
                 prevVillages.filter((village) => village.village_name !== name)
             );
@@ -74,7 +88,23 @@
                 updateDemographic: true
             }));
             setSelectedVillage(village);
-
+            const matchedItem = dataDemographics?.demographics.find(
+                dataDemographicsItem => dataDemographicsItem.village_id === village.village_id
+              );
+            
+              // If matchedItem is undefined, set to an object with empty strings
+              if (!matchedItem) {
+                setSelectedDemographic({
+                  demographic_id: "",
+                  age_distribution: "{\"0-18\": \"%\", \"19-35\": \"%\", \"36-50\": \"%\", \"51-65\": \"%\", \"65+\": \"%\"}",
+                  gender_ratios: "{\"male\": \"%\", \"female\": \"%\"}",
+                  population_growth_rate: "",
+                  population_size: "",
+                  village_id: ""
+                });
+              } else {
+                setSelectedDemographic(matchedItem);
+              }
         };
 
         const handleSortBy = (event)=>{
@@ -154,7 +184,7 @@
                 </div>
                 {isPopupVisible.view && <Popup onClose={()=> setPopups(prevState=>({...prevState,view:false}))} village={selectedVillage}/>}
                 {isPopupVisible.updateVillage && <UpdateVillageForm onClose={()=>setPopups(prevState=>({...prevState,updateVillage:false}))} village={selectedVillage}/>}
-                {isPopupVisible.updateDemographic && <UpdateDemographicForm onClose={()=>setPopups(prevState=>({...prevState,updateDemographic:false}))} village={selectedVillage}/>}
+                {isPopupVisible.updateDemographic && <UpdateDemographicForm onClose={()=>setPopups(prevState=>({...prevState,updateDemographic:false}))} village={selectedVillage} demographics= {selectedDemographic}/>}
             </div>
         );
     }

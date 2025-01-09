@@ -15,3 +15,11 @@ export const GET_DEMOGRAPHICS = gql`
     }
 
 `;
+
+
+// Mutation to create demographic data
+export const CREATE_DEMOGRAPHIC_DATA = gql`
+  mutation CreateDemographicData($data: demographicInput!) {
+    createDemographic(data: $data)
+  }
+`;

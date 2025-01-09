@@ -36,6 +36,7 @@ export const DELETE_VILLAGE = gql`
   }
 `;
 
+
 export const UPDATE_VILLAGE = gql`
   mutation UpdateVillage($villageData: VillageInput!) {
     updateVillage(villageData: $villageData){
