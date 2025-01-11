@@ -11,7 +11,7 @@ import { ApolloProvider } from '@apollo/client';
 import client from './lib/apolloClient';
 import SignUp from './pages/signup/signup.js';
 import Login from './pages/login/login.js';
-
+import PrivateRoute from './Components/PrivateRoute.js';
 function App() {
 
   return (
@@ -20,12 +20,39 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/" element={<Overview />} />
-        <Route path="/village-management" element={<VillageManagement />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/gallery" element={<Gallery />} />
-
-      </Routes>
+        <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Overview />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/village-management"
+            element={
+              <PrivateRoute>
+                <VillageManagement />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/chat"
+            element={
+              <PrivateRoute>
+                <Chat />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/gallery"
+            element={
+              <PrivateRoute>
+                <Gallery />
+              </PrivateRoute>
+            }
+          />
+          </Routes>
     </Router>
     </ApolloProvider>
  

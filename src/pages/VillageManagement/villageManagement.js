@@ -18,10 +18,17 @@ function VillageManagement() {
   const handleClick = ()=>{
     setShowPopup(true);
   }
+  const token = localStorage.getItem('authToken');
+  const tokenParts = token.split('.');
+  const decodedToken = JSON.parse(atob(tokenParts[1]));
+  const userId = decodedToken.id;
+  const role = decodedToken.role;
     return (
      
       <Layout>
+        
         <div className="village-container">
+        {role === 'admin' && (
           <input
             type="button"
             id="add-new-village"
@@ -29,6 +36,7 @@ function VillageManagement() {
             value="Add New Village"
             onClick={handleClick}
           />
+          )}
           <VillageList villagesList ={data?.villages || []}/>
         </div>
 
