@@ -94,9 +94,9 @@ const SignUp = () => {
           onClick={handleSignUp}
         />
         {error && <p>Error: {error.message}</p>}
-         <p>
+         <p className="already-register">
           Already have an account?{" "}
-          <Link to="/login">Login</Link>
+          <Link className="link" to="/login">Login</Link>
         </p>
       </div>
     </div>
