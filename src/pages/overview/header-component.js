@@ -5,24 +5,20 @@ import L from 'leaflet'; // Import Leaflet
 function Header ({villages}){
     useEffect(() =>{
         let vill =villages;
-        // Create the map
         var map = L.map('map-con').setView([32.22111, 35.25444], 7);
 
-        // Add the tile layer
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         }).addTo(map);
 
 
-        // Add markers for each village
         vill.forEach(village => {
             L.marker([village.latitude, village.longitude])
                 .addTo(map)
                 .bindPopup(`<b>${village.village_name}</b>`);
         });
 
-        // Cleanup function to remove the map instance on unmount
         return () => {
             map.remove();
         };

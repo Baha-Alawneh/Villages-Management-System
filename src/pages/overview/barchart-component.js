@@ -5,10 +5,6 @@ function Barchart({demographics, villages}) {
   const [barData, setBarData] = useState([]);
 
   useEffect(() => {
-    // Static data for the chart
-
-
-    // Prepare data for the Google Chart
     const calculateCityPopulation = () => {
       const result = [["City", "Population", { role: "style" }]];
       demographics.forEach((demo) => {

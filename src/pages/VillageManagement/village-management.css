@@ -6,17 +6,6 @@
     --text-color: #e5e7eb;
 }
 
-
-/* body {
-    font-family: "Arial", sans-serif;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-    grid-template-areas: "dashboard village-management";
-} */
-
 @media (max-width: 767px) {
     body{
         grid-template-columns: 1fr 7fr;
@@ -385,7 +374,7 @@
 
 input:disabled {
     pointer-events: none;
-    opacity: 0.5; /* Optional: reduce opacity to indicate the button is disabled */
+    opacity: 0.5; 
 }
 
 .imageViewContainer {

@@ -1,12 +1,11 @@
 import React from 'react';
 
 function chatHeader({ role,search, admins = [], handleClick, handleSearch }) {
-  console.log("Admins Prop:", admins);  // Log the data to check if it's being passed correctly
+  console.log("Admins Prop:", admins); 
   if (!admins.length) {
-    return <div>Loading admins...</div>;  // Add a loading message or spinner here
+    return <div>Loading admins...</div>;  
   }
 
-  // Optionally clean the data to remove unnecessary fields
   const cleanedAdmins = admins.map(admin => ({
     user_id: admin.user_id,
     username: admin.username,
@@ -15,7 +14,6 @@ function chatHeader({ role,search, admins = [], handleClick, handleSearch }) {
   return (
     <>
     
-       {/* Correctly conditionally render the chat header */}
        <h1 className="chat-header">
         {role === 'admin' ? 'Chat with Users' : 'Chat with Admins'}
       </h1>
