@@ -1,49 +1,47 @@
-
-:root{
-    --main2-color:#1f2937;
-    --secondee-color:#1a202c;
-    --text2-color:#e7e9ed;
-    --prompt2-color:#9299a5;
-    --click2-color:#3c82f6;
+:root {
+    --main-color: #1f2937;
+    --secondary-color: #1a202c;
+    --text-color: #e7e9ed;
+    --prompt-color: #9299a5;
+    --click-color: #3c82f6;
 }
 
 
-/* *{
+
+.inner-container-register, .outer-container-register, .btn-register, input, label {
+
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-
-} */
-
-.outer-container-register{
-    background-color: var(--secondee-color);
-    height: 100vh;
-    position: relative;
-
 }
 
-.inner-container-register{
-    position:absolute;
+.outer-container-register {
+    background-color: var(--secondary-color);
+    height: 100vh;
+    position: relative;
+}
+
+.inner-container-register {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 22%;
-    background-color: var(--main2-color);
+    background-color: var(--main-color);
     border-radius: 0.5vw;
 }
-.inner-container-register h1{
 
-    color: var(--text2-color);
+.inner-container-register h1 {
+    color: var(--text-color);
     font-family: "Roboto", sans-serif;
     font-weight: 600;
     font-style: normal;
-    font-size:large;
+    font-size: large;
     text-align: center;
-    
 }
 
-.inner-container-register label{
-    color: var(--text2-color);
+.inner-container-register label {
+    color: var(--text-color);
     display: block;
     font-size: 0.9rem;
     margin-bottom: 0.2rem;
@@ -51,26 +49,29 @@
     padding-left: 4.7%;
 }
 
-.inner-container-register input{
-height: 5.5vh;
-padding: 2%;
-margin-bottom: 2vh;
-width:90%;
-margin-left: 5%;
-border-radius: 3px;
-font-weight: normal;
-outline-offset:0lh;
-border: none; 
-outline: none; 
+.inner-container-register input {
+    height: 5.5vh;
+    padding: 2%;
+    margin-bottom: 2vh;
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 3px;
+    font-weight: normal;
+    outline-offset: 0;
+    border: none;
+    outline: none;
 }
-.inner-container-register input:focus{
-outline: 2px solid var(--click2-color);
+
+.inner-container-register input:focus {
+    outline: 2px solid var(--click-color);
 }
+
 .inner-container-register input::placeholder {
-    color: #9ba3af; 
-    font-size: 14px; 
+    color: #9ba3af;
+    font-size: 14px;
     opacity: 0.8;
 }
+
 .btn-register {
     background-color: #3c82f6;
     color: white;
@@ -82,15 +83,15 @@ outline: 2px solid var(--click2-color);
     cursor: pointer;
 }
 
-.already-register{
-    color: var(--prompt2-color);
+.already-register {
+    color: var(--prompt-color);
     text-align: center;
     font-size: 0.9rem;
     position: relative;
     bottom: 2vh;
-
 }
-.already-register a {
-    color: var(--click2-color);
+
+.already-register .link {
+    color: var(--click-color);
     text-decoration: none;
 }

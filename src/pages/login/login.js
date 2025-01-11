@@ -71,7 +71,7 @@ const LoginForm = () => {
                 </div>
                 <p className="already-register">
                     Already have an account?{" "}
-                    <Link to="/signup">SignUp</Link>
+                    <Link className="link" to="/signup">SignUp</Link>
                 </p>
             </div>
         </div>
