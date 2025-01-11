@@ -55,7 +55,6 @@
 
 }
 
-/* Start Statistics container */
 .statistics-container{
     display: grid;
     margin-top: 3vh;
@@ -84,9 +83,7 @@
     font-weight:100;
     margin-top:0 ;
 }
-/* End Statistics container */
 
-/* Start Chart Container */
 .charts-container{
     display:grid ;
     grid-template-columns: repeat(auto-fit,minmax(200px, 1fr));
@@ -138,4 +135,3 @@
     display: block;
 }
 
-/* End Chart Container */

@@ -11,14 +11,10 @@ import { useQuery } from '@apollo/client';
 import { GET_VILLAGES } from '../../grqphql/villages-queries'
 import { GET_DEMOGRAPHICS } from "../../grqphql/demographics-queries";
 function Overview() {
-    // Fetch villages data
     const { loading: loadingVillages, error: errorVillages, data: dataVillages } = useQuery(GET_VILLAGES);
-    // Fetch demographics data
     const { loading: loadingDemographics, error: errorDemographics, data: dataDemographics } = useQuery(GET_DEMOGRAPHICS);
 
-    // Combined loading state
     if (loadingVillages || loadingDemographics) return <p>Loading...</p>;
-    // Combined error state
     if (errorVillages) return <p>Error in villages query: {errorVillages.message}</p>;
     if (errorDemographics) return <p>Error in demographics query: {errorDemographics.message}</p>;
 

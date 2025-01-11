@@ -3,7 +3,7 @@ import React from "react";
 function ChatWindow({ messages = '', message, currentAdmin, send }) {
     const messageList = messages
       .split("\r\n")
-      .filter((msg) => msg.trim() !== '') // Exclude empty lines
+      .filter((msg) => msg.trim() !== '') 
       .map((msg, index) => (
         <div key={index}>
           {msg}<br />

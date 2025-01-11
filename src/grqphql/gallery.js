@@ -1,5 +1,4 @@
 import {gql} from '@apollo/client';
-// Define the GraphQL query to fetch images
 export const GET_IMAGES = gql`
   query GetImages {
     getAllImages {
@@ -12,7 +11,6 @@ export const GET_IMAGES = gql`
 
 
 
-// Define the GraphQL mutation to add a new image
 export const ADD_IMAGE = gql`
   mutation AddImage($galleryData: galleryInput!) {
     addImage(galleryData: $galleryData) {
