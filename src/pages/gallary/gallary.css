@@ -158,7 +158,6 @@ form button:hover{
 .image{
   background-color: #2d3748;
   border-radius: 8px;
-  height: 175px;
   padding: 1em;
 }
 .image img{
@@ -179,3 +178,4 @@ form button:hover{
   align-self: left;
 
 }
+

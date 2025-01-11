@@ -10,7 +10,11 @@ const Gallery = () => {
   const [isOverlayVisible, setOverlayVisible] = useState(false);
   const [images, setImages] = useState([]);
   const [image, setImage] = useState(null);
-
+  const token = localStorage.getItem('authToken');
+  const tokenParts = token.split('.');
+  const decodedToken = JSON.parse(atob(tokenParts[1]));
+  const userId = decodedToken.id;
+  const role = decodedToken.role;
     // Fetch images from the backend using Apollo's useQuery hook
     const { loading : loadingGet, error : errorGet,data: dataGet } = useQuery(GET_IMAGES);
     const [AddImage, { loading : loadingAdd, error : errorAdd,data: dataAdd }] = useMutation(ADD_IMAGE);
@@ -91,23 +95,27 @@ const Gallery = () => {
     <Layout>
       <div>
         {/* Gallery Container */}
+        
         <div className="gallery-unique-container">
+        {role === 'admin' && (
           <input
             type="button"
             id="add-new-image"
             className="gallery-unique-add-new-image"
             value="Add New Image"
             onClick={handleAddNewImageClick}
-          />
+          />)}
           <div className="gallery-unique-images-container">
             {images.map((image, index) => (
               <div key={index} className="image">
                 {/* Dynamically render the image and its description */}
+                <a href = {image.image_url} className = "galleryimageViewContainer" target="_blank">
                 <img
                   src={image.image_url}
                   alt={image.description}
                   className="gallery-unique-image"
                 />
+                </a>
                 <p className="gallery-unique-description">{image.description}</p>
               </div>
             ))}

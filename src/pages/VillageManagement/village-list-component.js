@@ -23,6 +23,11 @@
         const [selectedVillage, setSelectedVillage] = useState(null);
         const [selectedDemographic, setSelectedDemographic] = useState(null);
         const VILLAGES_PER_PAGE = 5;
+        const token = localStorage.getItem('authToken');
+        const tokenParts = token.split('.');
+        const decodedToken = JSON.parse(atob(tokenParts[1]));
+        const userId = decodedToken.id;
+        const role = decodedToken.role;
         useEffect(() => {
             setVillages(villagesList);
             setFilteredVillages(villagesList);
@@ -64,13 +69,21 @@
             console.log(isPopupVisible.view);
         };
 
-        const handleDeleteVillage = (name) => {
-            console.log(name);
-            const VillageName = {  name }; 
-            deleteVillage(VillageName);
+        const handleDeleteVillage = async (name) =>  {
+            try {
+                // Call the deleteVillage mutation with the correct variable structure
+                await deleteVillage({
+                    variables: {
+                        villageName: name,
+                    },
+                });
             setVillages((prevVillages) =>
                 prevVillages.filter((village) => village.village_name !== name)
             );
+        }
+         catch (error) {
+            console.error('Error deleting village:', error);
+        }
         };
 
         const handleUpdateVillage = (village) => {
@@ -159,6 +172,7 @@
                                     value="View"
                                     onClick={() => handleShowPopup(village)}
                                 />
+                                  {role === 'admin' && (<>
                                 <input
                                     type="button"
                                     className="update-village"
@@ -177,6 +191,7 @@
                                     value="Update Demographic Data"
                                     onClick={() => handleUpdateDemographic(village)}
                                 />
+                                  </>)}
                             </div>
                         </div>
                     ))}
