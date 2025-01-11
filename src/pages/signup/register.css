@@ -7,10 +7,7 @@
     --click-color:#3c82f6;
 }
 
-body {
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-}
+
 *{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -18,14 +15,14 @@ body {
 
 }
 
-.outer-container{
+.outer-container-register{
     background-color: var(--secondary-color);
     height: 100vh;
     position: relative;
 
 }
 
-.inner-container{
+.inner-container-register{
     position:absolute;
     top: 50%;
     left: 50%;
@@ -34,7 +31,7 @@ body {
     background-color: var(--main-color);
     border-radius: 0.5vw;
 }
-.inner-container h1{
+.inner-container-register h1{
 
     color: var(--text-color);
     font-family: "Roboto", sans-serif;
@@ -45,7 +42,7 @@ body {
     
 }
 
-.inner-container label{
+.inner-container-register label{
     color: var(--text-color);
     display: block;
     font-size: 0.9rem;
@@ -54,7 +51,7 @@ body {
     padding-left: 4.7%;
 }
 
-.inner-container input{
+.inner-container-register input{
 height: 5.5vh;
 padding: 2%;
 margin-bottom: 2vh;
@@ -66,26 +63,26 @@ outline-offset:0lh;
 border: none; 
 outline: none; 
 }
-.inner-container input:focus{
+.inner-container-register input:focus{
 outline: 2px solid var(--click-color);
 }
-.inner-container input::placeholder {
+.inner-container-register input::placeholder {
     color: #9ba3af; 
     font-size: 14px; 
     opacity: 0.8;
 }
-.btn {
+.btn-register {
     background-color: #3c82f6;
     color: white;
     font-size: 13px;
 }
 
-.btn:hover {
+.btn-register:hover {
     background-color: #2962eb;
     cursor: pointer;
 }
 
-p {
+.already-register{
     color: var(--prompt-color);
     text-align: center;
     font-size: 0.9rem;
@@ -93,7 +90,7 @@ p {
     bottom: 2vh;
 
 }
-p a {
+.already-register a {
     color: var(--click-color);
     text-decoration: none;
 }

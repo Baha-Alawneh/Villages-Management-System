@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import "../signup/register.css";
+import "../signup/register.css";
 import { Link,useNavigate } from "react-router-dom";
 import { LOGIN_USER } from "../../grqphql/auth";
 import { useMutation } from '@apollo/client';
@@ -37,11 +37,11 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="outer-container" >
-            <div className="inner-container" >
+        <div className="outer-container-register" >
+            <div className="inner-container-register" >
                 <h1>Login</h1>
-                <div className="username">
-                    <label htmlFor="username">Username</label>
+                <div className="username-register">
+                    <label htmlFor="username-register">Username</label>
                     <input
                         type="text"
                         id="username"
@@ -50,8 +50,8 @@ const LoginForm = () => {
                         placeholder="Enter your username"
                     />
                 </div>
-                <div className="password">
-                    <label htmlFor="password">Password</label>
+                <div className="password-register">
+                    <label htmlFor="password-register">Password</label>
                     <input
                         type="password"
                         id="password"
@@ -63,13 +63,13 @@ const LoginForm = () => {
                 <div className="button">
                     <input
                         type="button"
-                        className="btn"
+                        className="btn-register"
                         id="loginBtn"
                         value="Login"
                         onClick={handleLogin}
                     />
                 </div>
-                <p>
+                <p className="already-register">
                     Already have an account?{" "}
                     <Link to="/signup">SignUp</Link>
                 </p>
