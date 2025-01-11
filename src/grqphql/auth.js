@@ -35,7 +35,7 @@ query {
 }
 `;
 
-export const GET_USERS=gql`
+export const GET_USERS = gql`
 query {
   users {
     user_id
@@ -46,3 +46,8 @@ query {
   }
 }
 `
+export const LOGOUT_USER = gql`
+mutation logout($token: String) {
+  logout(token: $token)
+}
+`;

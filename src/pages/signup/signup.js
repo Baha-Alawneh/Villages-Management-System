@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-//import './register.css'
+import './register.css'
 import { SIGNUP_USER } from "../../grqphql/auth";
 import { useMutation } from "@apollo/client";
 const SignUp = () => {
@@ -49,8 +49,8 @@ const SignUp = () => {
   };
 
   return (
-    <div className="outer-container">
-      <div className="inner-container">
+    <div className="outer-container-register">
+      <div className="inner-container-register">
         <h1>Sign Up</h1>
         <label htmlFor="full_name">Full Name</label>
         <input
@@ -88,7 +88,7 @@ const SignUp = () => {
 
         <input
           type="button"
-          className="btn"
+          className="btn-register"
           id="signup"
           value="Sign Up"
           onClick={handleSignUp}
