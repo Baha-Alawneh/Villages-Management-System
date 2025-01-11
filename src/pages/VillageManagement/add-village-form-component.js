@@ -8,32 +8,28 @@ function AddVillageForm({ setShowPopup }) {
   const [addVillage, { loading, error, data }] = useMutation(ADD_VILLAGE);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
-  // Handle image upload and compression
   const handleImageUpload = async (e) => {
-    const file = e.target.files[0];  // Get the file selected by the user
+    const file = e.target.files[0];
     if (file) {
       try {
         // Compress the image
         const compressedFile = await imageCompression(file, {
-          maxSizeMB: 1,  // Max size in MB (you can adjust this)
-          maxWidthOrHeight: 800,  // Max width or height of the image (you can adjust this)
+          maxSizeMB: 1, 
+          maxWidthOrHeight: 800,
         });
-        
-      // Convert compressed file to Base64
       const reader = new FileReader();
       reader.readAsDataURL(compressedFile);
       reader.onloadend = () => {
-        setImage(reader.result); // Save Base64 string to state
-        console.log('Base64 string:', reader.result); // Optional
+        setImage(reader.result); 
+        console.log('Base64 string:', reader.result); 
       };
      }catch (error) {
-        console.error('Error compressing image:', error);  // Handle any errors
+        console.error('Error compressing image:', error); 
       }
     }
   };
 
   const handleSubmit = async() => {
-    // Prepare the data and send the image along with the form submission
     const villageData = {
       villageName: document.getElementById('village-name').value,
       region: document.getElementById('region').value,
@@ -41,22 +37,22 @@ function AddVillageForm({ setShowPopup }) {
       latitude: parseFloat(document.getElementById('latitude').value),
       longitude: parseFloat(document.getElementById('longitude').value),
       categories: document.getElementById('categories').value,
-      imageBase64: image,  // This is the compressed image
+      imageBase64: image, 
     };
 
     
-    // Call your GraphQL mutation here to add the village
+  
     try{
       const response = await addVillage({ variables: {  villageData: villageData }, });
-    setShowPopup(false);  // Close the popup after successful submission
-    window.location.reload(); // Reload the page
+    setShowPopup(false);  
+    window.location.reload();
 
 
     } catch(error){
       console.error('Error adding village:', error);
       
     }
-    // Make sure to send the compressed image as part of the village data
+  
   };
 
   return (
@@ -97,7 +93,7 @@ function AddVillageForm({ setShowPopup }) {
           id="add-village"
           className="add-village"
           value="Add Village"
-          onClick={handleSubmit}  // Handle form submission
+          onClick={handleSubmit} 
         />
       </div>
     </div>

@@ -8,7 +8,6 @@ function Charts({demographics}) {
   const genderData =calculateGenderData(demographics);
 
 
-  // Chart options
   const chartOptions = {
     titleTextStyle: { color: "#fff", fontSize: 18, bold: true },
     backgroundColor: "transparent",
@@ -53,7 +52,6 @@ function calculateAgeData(demographics) {
   const ageData = [["Age Group", "Number of People"]];
   const populationNumbers = [0,0,0,0,0];
 
-  // Loop through each demographic and process the age distribution
   demographics.forEach(demo => {
     const percents = JSON.parse(demo.age_distribution);
     const population = Number(demo.population_size);
@@ -62,7 +60,6 @@ function calculateAgeData(demographics) {
     }
   });
 
-  // Convert the totals map into the required format
   for (let i=0; i<5;i++) {
       ageData.push([ageGroups[i], populationNumbers[i]]);
   }
@@ -74,7 +71,6 @@ function calculateGenderData(demographics) {
   const genderData = [["Gender", "Number of People"]];
   const populationNumbers = [ 0, 0];
 
-  // Loop through each demographic and process the age distribution
   demographics.forEach(demo => {
     const percents = JSON.parse(demo.gender_ratios);
     const population = Number(demo.population_size);

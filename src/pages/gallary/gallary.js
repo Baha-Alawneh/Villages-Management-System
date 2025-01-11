@@ -4,23 +4,17 @@ import {useQuery} from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import "./gallary.css";
 import {GET_IMAGES,ADD_IMAGE} from '../../grqphql/gallery'
-import imageCompression from 'browser-image-compression';  // Import the library
+import imageCompression from 'browser-image-compression';
 
 const Gallery = () => {
   const [isOverlayVisible, setOverlayVisible] = useState(false);
   const [images, setImages] = useState([]);
   const [image, setImage] = useState(null);
-  const token = localStorage.getItem('authToken');
-  const tokenParts = token.split('.');
-  const decodedToken = JSON.parse(atob(tokenParts[1]));
-  const userId = decodedToken.id;
-  const role = decodedToken.role;
-    // Fetch images from the backend using Apollo's useQuery hook
+
     const { loading : loadingGet, error : errorGet,data: dataGet } = useQuery(GET_IMAGES);
     const [AddImage, { loading : loadingAdd, error : errorAdd,data: dataAdd }] = useMutation(ADD_IMAGE);
 
 
-  // Update images state when data is fetched
   useEffect(() => {
     if (dataGet && dataGet.getAllImages) {
       setImages(dataGet.getAllImages);
@@ -36,26 +30,23 @@ const Gallery = () => {
     setOverlayVisible(false);
   };
 
-    // Handle image upload and compression
     const handleImageUpload = async (e) => {
-      const file = e.target.files[0];  // Get the file selected by the user
+      const file = e.target.files[0];  
       if (file) {
         try {
           // Compress the image
           const compressedFile = await imageCompression(file, {
-            maxSizeMB: 1,  // Max size in MB (you can adjust this)
-            maxWidthOrHeight: 800,  // Max width or height of the image (you can adjust this)
+            maxSizeMB: 1,  
+            maxWidthOrHeight: 800, 
           });
-          
-        // Convert compressed file to Base64
         const reader = new FileReader();
         reader.readAsDataURL(compressedFile);
         reader.onloadend = () => {
-          setImage(reader.result); // Save Base64 string to state
-          console.log('Base64 string:', reader.result); // Optional
+          setImage(reader.result); 
+          console.log('Base64 string:', reader.result); 
         };
        }catch (error) {
-          console.error('Error compressing image:', error);  // Handle any errors
+          console.error('Error compressing image:', error);  
         }
       }
     };
@@ -69,7 +60,7 @@ const Gallery = () => {
       imageBase64: image,
     }
 
-    // Call your GraphQL mutation here to add the village
+  
     try{
       console.log(gData);
       const response = await AddImage({ variables: {  galleryData: gData }, });
@@ -79,14 +70,6 @@ const Gallery = () => {
       
     }
 
-      // // Update state to add the new image and description
-      // setImages((prevImages) => [
-      //   ...prevImages,
-      //   newImage,
-      // ]);
-
-    
-      // Close the overlay
       setOverlayVisible(false);
     }
   
@@ -94,35 +77,31 @@ const Gallery = () => {
   return (
     <Layout>
       <div>
-        {/* Gallery Container */}
-        
+      
         <div className="gallery-unique-container">
-        {role === 'admin' && (
           <input
             type="button"
             id="add-new-image"
             className="gallery-unique-add-new-image"
             value="Add New Image"
             onClick={handleAddNewImageClick}
-          />)}
+          />
           <div className="gallery-unique-images-container">
             {images.map((image, index) => (
               <div key={index} className="image">
-                {/* Dynamically render the image and its description */}
-                <a href = {image.image_url} className = "galleryimageViewContainer" target="_blank">
+             
                 <img
                   src={image.image_url}
                   alt={image.description}
                   className="gallery-unique-image"
                 />
-                </a>
                 <p className="gallery-unique-description">{image.description}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Overlay Popup */}
+      
         {isOverlayVisible && (
           <div className="gallery-unique-overlay">
             <div className="gallery-unique-popup">

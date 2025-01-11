@@ -1,7 +1,6 @@
     // VillageList.js
     import React, { useState, useEffect } from 'react';
     import './village-management.css'
-    import { villagesStaticList } from '../../utils/info';
     import Popup from './popup-component';
     import UpdateVillageForm from './update-village-form-component'
     import UpdateDemographicForm from './update-demographic-form';
@@ -33,7 +32,7 @@
             setFilteredVillages(villagesList);
         }, []); 
         
-        // Handle sorting and showing villages list
+        
         useEffect(() => {
             let sortedVillages = [...filteredVillages];
             console.log(isSorted);
@@ -49,7 +48,7 @@
         },[searchInput])
         const totalVillages = villages.length;
         const totalPages = Math.ceil(totalVillages / VILLAGES_PER_PAGE);
-        // Get the villages for the current page
+       
         const currentVillages = villages.slice(currentPage * VILLAGES_PER_PAGE, (currentPage + 1) * VILLAGES_PER_PAGE);
         const [deleteVillage, {loading: loadingDeleteVillage,error: errorDeletingVillage, data: dataDelteVillage}] = useMutation(DELETE_VILLAGE);
         const { loading: loadingDemographics, error: errorDemographics, data: dataDemographics } = useQuery(GET_DEMOGRAPHICS);
@@ -63,7 +62,7 @@
         const handleShowPopup = (village) => {
             setPopups(prevState => ({
                 ...prevState,
-                view: true, // Update the specific popup
+                view: true,
             }));
             setSelectedVillage(village);
             console.log(isPopupVisible.view);
@@ -104,8 +103,7 @@
             const matchedItem = dataDemographics?.demographics.find(
                 dataDemographicsItem => dataDemographicsItem.village_id === village.village_id
               );
-            
-              // If matchedItem is undefined, set to an object with empty strings
+        
               if (!matchedItem) {
                 setSelectedDemographic({
                   demographic_id: "",

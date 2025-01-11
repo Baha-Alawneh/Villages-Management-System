@@ -56,12 +56,10 @@ function Chat() {
     console.log("Selected recipient: ", username);
     setCurrentRecipient(username);
 
-    // Check if chat history for the recipient is already cached
     if (chatHistories[username]) {
-      setChatMessages(chatHistories[username]); // Load chat from cache
+      setChatMessages(chatHistories[username]);
     } else {
-      setChatMessages(''); // Clear chat while fetching new data
-      // Fetch chat from the server if not cached
+      setChatMessages(''); 
       const variables =
         role === 'admin'
           ? { user: username, admin: user.username }
@@ -92,13 +90,11 @@ function Chat() {
           console.log("Direct Message: ", message);
           const { from, content } = message;
 
-          // Update the chat history for the recipient
           setChatHistories((prevHistories) => {
             const updatedHistory = {
               ...prevHistories,
               [from]: (prevHistories[from] || '') + `\r\n${from}: ${content}`,
             };
-            // Update messages if the recipient is currently selected
             if (currentRecipientRef.current === from) {
               setChatMessages(updatedHistory[from]);
             }
