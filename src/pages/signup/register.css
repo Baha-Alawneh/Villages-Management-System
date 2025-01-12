@@ -8,7 +8,7 @@
 
 
 
-.inner-container-register, .outer-container-register, .btn-register,.username-register input, .inner-container-register label {
+.inner-container-register, .outer-container-register, .btn-register,.outer-container-register input, .outer-container-register label {
 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
