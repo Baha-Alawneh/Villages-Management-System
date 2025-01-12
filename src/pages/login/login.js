@@ -39,6 +39,7 @@ const LoginForm = () => {
     return (
         <div className="outer-container-register" >
             <div className="inner-container-register" >
+
                 <h1>Login</h1>
                 <div className="username-register">
                     <label htmlFor="username-register">Username</label>
@@ -74,6 +75,7 @@ const LoginForm = () => {
                     <Link className="link" to="/signup">SignUp</Link>
                 </p>
             </div>
+            
         </div>
     );
 };
